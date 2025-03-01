@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 export default function BookingForm() {
@@ -51,7 +51,7 @@ export default function BookingForm() {
         }
     }
 
-    function clear(){
+    function clear() {
         setName("");
         setPhone("");
         setEmail("");
@@ -72,8 +72,8 @@ export default function BookingForm() {
     return (
         <div className="container">
             <h1 className="my-3 fw-bold">Careem Ride Booking</h1>
-          
-            
+
+
             <h2 className="fw-bold py-3">User Information</h2>
             <label>Enter Your Full Name</label>
             <input type="text" className="form-control my-3" placeholder="Enter Your Full Name" value={Name} onChange={(e) => setName(e.target.value)} required />
@@ -84,7 +84,7 @@ export default function BookingForm() {
             <label>Enter Your Email Address</label>
             <input type="email" className="form-control my-3" placeholder="Enter Your Email Address" value={Email} onChange={(e) => setEmail(e.target.value)} required />
 
-          
+
             <h2 className="fw-bold py-3">Ride Details</h2>
             <label>Enter Your Pickup Location</label>
             <input type="text" className="form-control my-3" placeholder="Enter Your Pickup Location" value={Pickup} onChange={(e) => setPickup(e.target.value)} required />
@@ -118,7 +118,7 @@ export default function BookingForm() {
             <label>Enter Your Promo Code</label>
             <input type="text" className="form-control my-3" placeholder="Enter Your Promo Code" value={PromoCode} onChange={(e) => setPromoCode(e.target.value)} />
 
-           
+
             <h2 className="fw-bold">Special Requests</h2>
             <label>Need a Child Seat?</label>
             <div className="my-2">
@@ -135,19 +135,22 @@ export default function BookingForm() {
             <label>Additional Notes</label>
             <textarea className="form-control my-3" placeholder="Additional Notes" value={Notes} onChange={(e) => setNotes(e.target.value)}></textarea>
 
-          
+
             <h2 className="fw-bold">Terms & Conditions</h2>
             <label>Agree to Terms & Conditions?</label>
             <div className="my-2">
                 <input type="radio" name="Terms" value="Yes" checked={Terms === "Yes"} onChange={(e) => setTerms(e.target.value)} /> "I confirm that all the provided details are correct and agree to Careem's ride policies."
             </div>
 
-           
+
             <button className="btn btn-primary my-3" onClick={submit}>Submit</button>
 
             {Show && <div className="alert alert-success mt-3">{Msg}</div>}
- <br />
-        <Link className="btn btn-secondary my-3" to="/Data">View Data</Link>
+            <br />
+            <Link className="btn btn-secondary my-3" to="/Data">View Data</Link>
+            <br />
+            <br />
+            <Link to="/">Already have an account? <span className='text-primary fw-bold'>Sign Up</span></Link>
         </div>
     );
 }

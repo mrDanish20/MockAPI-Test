@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function DataInTable() {
   let [data, setData] = useState([]);
@@ -9,6 +9,9 @@ export default function DataInTable() {
   let [show, setShow] = useState(false);
   let [msg, setMsg] = useState("");
   let [sortOrder, setSortOrder] = useState(""); 
+  let loc = useLocation();
+  let name = loc.state?.n;
+
   useEffect(() => {
     axios
       .get("https://67b0235fdffcd88a67886e99.mockapi.io/Careembooking")
@@ -30,21 +33,23 @@ export default function DataInTable() {
     }
   }, [show]);
 
- 
   const filteredData = data.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase())
   );
 
-
+  
   const sortedData = [...filteredData].sort((a, b) => {
-    return sortOrder === "asc"
-      ? a.name.localeCompare(b.name)
-      : b.name.localeCompare(a.name);
+    if (sortOrder === "asc") {
+      return a.name.localeCompare(b.name); 
+    } else if (sortOrder === "desc") {
+      return b.name.localeCompare(a.name); 
+    }
+    return 0; // No sorting if no order is selected
   });
 
   return (
     <div className="container mt-4">
-      <h2 className="mb-3">Data Table</h2>
+      <h2 className="mb-3 fw-bold">Welcome <strong style={{color: "red"}}>{name}</strong></h2>
       <Link to="/" className="btn btn-danger my-3">Add Ride +</Link>
 
       <div className="d-flex mb-3">
@@ -55,13 +60,12 @@ export default function DataInTable() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-
-     
         <select
           className="form-select"
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
         >
+          <option value="">Sort: None</option>
           <option value="asc">Sort: Ascending</option>
           <option value="desc">Sort: Descending</option>
         </select>

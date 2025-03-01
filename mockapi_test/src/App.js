@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import BookingForm from './Components/BookingForm';
 import { BrowserRouter, Routes , Route ,Link } from 'react-router-dom';
 import DataInTable from './Components/DataInTable';
+import Login from './Components/Login';
 
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
     <div className="App">
      
      <Routes>
-      <Route path='/' element={<BookingForm />}/>
+      <Route path='/' element={<Login />}/>
+      <Route path='/Register' element={<BookingForm />}/>
       <Route path='/Data' element={<DataInTable />}/>
 
      </Routes>
